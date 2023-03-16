@@ -1,3 +1,3 @@
 module.exports = {
-  secretKey: 'ldjs;hgloudshgaloh'
+  secretOrKey: 'ldjs;hgloudshgaloh'
 }
