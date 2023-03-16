@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
+      allowNull: false,
       primaryKey: true
     },
     name: {
@@ -20,6 +21,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
-  })
+  });
+
+  User.associate = models => {
+    User.hasMany(models.Post, {
+      onDelete: cascade
+    });
+  };
+
   return User;
-}
+};

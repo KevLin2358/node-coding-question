@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
+      allowNull: false,
       primaryKey: true
     },
     title: {
@@ -16,7 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     photo: {
       type: DataTypes.BLOB('long')
     },
-  })
+  });
+
+  Post.associate = models => {
+    Post.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Post;
-}
+};
