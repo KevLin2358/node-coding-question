@@ -4,6 +4,21 @@ const passport = require('passport');
 const db = require('../models');
 const Post = db.post;
 const validatePostInput = require('../validations/post');
+const { create } = require('domain');
+const moment = require('moment');
+
+router.get('/:id', (req, res) => {
+  Post.findByPk(req.params.id)
+    .then(post => {
+      let createdAt = post.createdAt
+      relativeTime = moment(createdAt).startOf('day').fromNow()
+      post.relativeTime = relativeTime
+      res.json(post)
+    })
+    .catch(err => 
+      res.status(404).json({noPostFound: "No post found with that ID"})
+    )
+})
 
 router.post('/user/:user_id',
   passport.authenticate('jwt', { session: false }),
