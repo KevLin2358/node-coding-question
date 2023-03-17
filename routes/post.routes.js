@@ -41,4 +41,19 @@ router.post('/user/:user_id',
   }
 );
 
+router.patch('/:id',   
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Post.findByPk(req.params.id)
+      .then(post => {
+        post.title = req.body.title
+        post.description = req.body.description
+        post.save()
+        res.json(post)
+      })
+      .catch(err => {
+        res.status(404).json({noPostFound: "No post found with that ID"})
+      })
+})
+
 module.exports = router;
