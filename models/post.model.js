@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     photo: {
       type: DataTypes.BLOB('long')
     },
+    relativeTime: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
 
   Post.associate = models => {
