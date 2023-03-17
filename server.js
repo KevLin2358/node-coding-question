@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-db.sequelize.sync({force: true}).then(() => {
-  console.log("db has been re sync");
-});
+// db.sequelize.sync({force: true}).then(() => {
+//   console.log("db has been re sync");
+// });
 
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);

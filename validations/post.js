@@ -16,11 +16,11 @@ module.exports = function validatePostInput(data) {
   }
 
   if (!Validator.isLength(data.description, { min: 1, max: 38 })) {
-    errors.title = "Title must be between 1 and 38 characters";
+    errors.description = "Description must be between 1 and 38 characters";
   }
 
   if (Validator.isEmpty(data.description)) {
-    errors.title = "Title field is required";
+    errors.description = "Description field is required";
   }
 
   return {
